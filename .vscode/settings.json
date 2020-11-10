@@ -1,0 +1,10 @@
+{
+    "Lua.diagnostics.globals": [
+        "love",
+        "unpack",
+        "realY",
+        "realX",
+        "class",
+        "push"
+    ]
+}
