@@ -1,18 +1,27 @@
-push = require 'push'
+push = require 'lib/push'
 
-WINDOW_WIDTH = 707
+WINDOW_WIDTH = 1200
 WINDOW_HEIGHT = 500
 
-local background = love.graphics.newImage('background.png')
-local backgroundScroll = 0
+VIRTUAL_WIDTH = 1200
+VIRTUAL_HEIGHT = 500
 
-local ground = love.graphics.newImage('ground.png')
-local groundScroll = 0
+local stars = love.graphics.newImage('assets/stars.png')
+local starsScroll = 0
 
-local BACKGROUND_SCROLL_SPEED = 30
-local GROUND_SCROLL_SPEED = 60
+local stars_twinkle = love.graphics.newImage('assets/stars_twinkle.png')
+local starsScroll = 0
 
-local BACKGROUND_LOOPING_POINT = 707
+local sun = love.graphics.newImage('assets/sun.png')
+local sunScroll = 0
+
+local hills = love.graphics.newImage('assets/hills.png')
+local hillsScroll = 0
+
+-- local BACKGROUND_SCROLL_SPEED = 30
+-- local GROUND_SCROLL_SPEED = 60
+
+-- local BACKGROUND_LOOPING_POINT = 707
 
 function love.load()
     
@@ -20,7 +29,7 @@ function love.load()
 
     love.window.setTitle('Spaceman')
 
-    push:setupScreen(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
+    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         vsync = true,
         fullscreen = false,
         resizable = true
@@ -40,21 +49,14 @@ end
 
 function love.draw()
     push:start()
-    love.graphics.draw(background, -backgroundScroll, 0)
-    love.graphics.draw(ground, -groundScroll, WINDOW_HEIGHT - 89)
+    love.graphics.draw(stars, 0, 0)
+    love.graphics.draw(sun, 0, 0)
+    love.graphics.draw(hills, 0, 0)
     
     push:finish()
 end
 
 function love.update(dt)
-    
-    -- scroll background by preset speed * dt, looping back to 0 after the looping point
-    backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) 
-        % BACKGROUND_LOOPING_POINT
-    print(backgroundScroll)
-    -- scroll ground by preset speed * dt, looping back to 0 after the screen width passes
-    groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) 
-        % WINDOW_WIDTH
-
+    love.graphics.draw(stars_twinkle, 0, 0)
 end
 
